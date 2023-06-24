@@ -15,17 +15,29 @@ def Insert_User(id,Password):
         format = '%Y-%m-%d %H:%M:%S'
 
         # UserDatas.insert_one({'Start_Day':datetime_utc2,'UserName':"JungHo",'Password':"a","Swichs":True,"End_Days":Last_datetime})
-        UserDatas.insert_one({'Start_Day':datetime_utc2,'UserName':str(id),'Password':str(Password),"Swichs":True,"End_Days":Last_datetime})
+        UserDatas.insert_one({'Start_Day':datetime_utc2,'UserName':str(id),'Password':str(Password),"Swichs":True,"End_Days":Last_datetime,"Level":1})
         
         return True
     else:
         return False
 
-def Find_User(id,Password):
+def Find_User(id,Password,Mac):
     datas =UserDatas.find_one({"UserName":id})
     if datas is not None:
         if datas['Password'] == str(Password):
-            return 1
+            if 'Mac' in datas:
+                if len(datas['Mac']) >= datas["Level"]:
+                    if Mac in datas['Mac']:
+                        return 1
+                    else:
+                        return 4
+
+                else:
+                    UserDatas.update_one({"UserName":id}, {'$addToSet': {'Mac': Mac}})
+                    return 1
+            else:
+                UserDatas.update_one({"UserName":id}, {'$addToSet': {'Mac': Mac}})
+                return 1
         else:
             return 2
     else:
@@ -49,7 +61,8 @@ def Check_On(id):
 # UserDatas.update_one({"UserName":"JungHo"},{"$set":{"Swichs":True}})
 # print(Insert_User("JungHo","a"))
 # print(Find_User("JungH","a"))
-print(Check_On("JungHo"))
+# UserDatas.update_one({"UserName":"asd64026"},{"$set":{"Level":3}})
+# print(Check_On("asd64026"))
 # UserDatas.delete_many({})
 # datas =UserDatas.find({})
 # for i in datas:

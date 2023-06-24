@@ -18,8 +18,8 @@ def MakeUser(User_ID,PassWord):
     return 결과
 
 @app.post('/Login')
-def Login(User_ID,PassWord):
-    결과 = Find_User(User_ID,PassWord)
+def Login(User_ID,PassWord,Mac):
+    결과 = Find_User(User_ID,PassWord,Mac)
     return 결과
 
 @app.post('/Check')
