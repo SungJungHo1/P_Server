@@ -96,7 +96,7 @@ class Ses(BaseModel):
 # 사용자 로그인 라우트
 @app.post('/login')
 def login(req: LoginRequest):
-    print(req)
+    
     # 사용자를 찾고 로그인을 시도합니다.
     login_result = find_user(req.user_id, req.password, req.mac)
     
