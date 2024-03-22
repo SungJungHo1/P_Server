@@ -70,7 +70,7 @@ def find_user(id, password, mac):
             return 2
     else:
         return 3
-@app.post('/login')
+@app.post('/singin')
 def make_user(id, password):
     state,text = insert_user(id, password)
     return state, text
