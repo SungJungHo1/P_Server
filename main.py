@@ -70,6 +70,10 @@ def find_user(id, password, mac):
             return 2
     else:
         return 3
+@app.post('/login')
+def make_user(id, password):
+    state,text = insert_user(id, password)
+    return state, text
 
 # 로그인 상태 확인 함수
 def check_login_status(id):
