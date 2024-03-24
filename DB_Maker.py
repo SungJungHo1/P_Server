@@ -1,7 +1,7 @@
 from pymongo import MongoClient,ASCENDING
 from datetime import datetime, timedelta, timezone
 
-client = MongoClient('mongodb://tjdwjdgh12:asd64026@43.200.229.41', 27017)
+client = MongoClient('mongodb://tjdwjdgh12:asd64026@3.36.180.212', 27017)
 mydb = client['P_ServerDB']
 UserDatas = mydb['UserDatas']
 
