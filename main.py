@@ -8,7 +8,7 @@ from pydantic import BaseModel
 app = FastAPI()
 
 # MongoDB 클라이언트 설정
-client = MongoClient('mongodb://tjdwjdgh12:asd64026@43.200.229.41', 27017)
+client = MongoClient('mongodb://tjdwjdgh12:asd64026@3.36.180.212', 27017)
 mydb = client['P_ServerDB']
 UserDatas = mydb['UserDatas']
 
